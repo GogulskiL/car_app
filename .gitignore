@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+car_app.iml
+misc.xml
+modules.xml
+vcs.xml
+profiles_settings.xml
+Project_Default.xml
+local_settings.py
+db.sqlite3
