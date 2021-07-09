@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from car_check.views import HomeView
+from car_check.views import HomeView, CarAdd
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
+    path('add_car/', CarAdd.as_view(), name='add-car')
 ]

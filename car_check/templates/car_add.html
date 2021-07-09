@@ -1,0 +1,22 @@
+{% extends "__base__.html" %}
+{% block content %}
+
+W tym widoku możesz dodać swoję auto <br/>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+ <input type="submit" value="dodaj">
+</form>
+    {% if car_add %}
+        <p>Dodano auto</p>
+        <ul>
+            <li>{{ car_add.mark }}</li>
+            <li>{{ car_add.car_model }}</li>
+            <li>{{ car_add.engine }}</li>
+            <li>{{ car_add.fuel }}</li>
+            <li>{{ car_add.vintage }}</li>
+            <li>{{ car_add.course }}</li>
+        </ul>
+    {% endif %}
+
+{% endblock content %}
