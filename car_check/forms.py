@@ -1,5 +1,5 @@
 from django import forms
-from car_check.models import car_fuel
+from car_check.models import car_fuel, rating, price_workshop
 
 
 class CarAddForm(forms.Form):
@@ -9,3 +9,12 @@ class CarAddForm(forms.Form):
     fuel = forms.ChoiceField(label="Rodzaj Paliwa", choices=car_fuel)
     vintage = forms.IntegerField(label="Rocznik")
     course = forms.IntegerField(label="Przebieg")
+
+
+class WorkshopAddForm(forms.Form):
+    name = forms.CharField(label="Nazwa warsztatu")
+    phone_number = forms.IntegerField(label="Numer telefonu")
+    address = forms.CharField(label="Adres")
+    note = forms.ChoiceField(label="Ocena warsztatu", choices=rating)
+    prices = forms.ChoiceField(label="Ceny warsztatu", choices=price_workshop)
+    short_description = forms.CharField(label="Opis warsztatu")
