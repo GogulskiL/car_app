@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.views import View
-from .forms import CarAddForm, WorkshopAddForm
-from .models import Car, Workshop
+from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm
+from .models import Car, Workshop, Owner
 
 
 class HomeView(View):
@@ -10,7 +10,7 @@ class HomeView(View):
         return render(request, "index.html")
 
 
-class CarAdd(View):
+class CarAddView(View):
     def get(self, request):
         form = CarAddForm()
         return render(request, "car_add.html", {'form': form})
@@ -29,7 +29,7 @@ class CarAdd(View):
             return render(request, 'car_add.html', {'car_add': car_add})
 
 
-class WorkshopAdd(View):
+class WorkshopAddView(View):
     def get(self, request):
         form = WorkshopAddForm()
         return render(request, "workshop_add.html", {'form': form})
@@ -47,3 +47,12 @@ class WorkshopAdd(View):
                                                    prices=prices, short_description=short_description)
 
             return render(request, "workshop_add.html", {'workshop_add': workshop_add})
+
+
+class OwnerAddView(View):
+    def get(self, request):
+        form = OwnerAddForm()
+        return render(request, "owner_add.html", {'form': form})
+
+    def post(self, request):
+        pass
