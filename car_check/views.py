@@ -60,6 +60,8 @@ class OwnerAddView(View):
             name = form.cleaned_data['name']
             last_name = form.cleaned_data['last_name']
             car = form.cleaned_data['car']
-            owner_add = Car.objects.create(name=name, last_name=last_name, car=car)
+            owner_add = Car.objects.create(name=name, last_name=last_name, car=car.id)
 
             return render(request, "owner_add.html", {'owner_add': owner_add})
+        else:
+            return HttpResponse('blad')
