@@ -55,4 +55,11 @@ class OwnerAddView(View):
         return render(request, "owner_add.html", {'form': form})
 
     def post(self, request):
-        pass
+        form = OwnerAddForm()
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            last_name = form.cleaned_data['last_name']
+            car = form.cleaned_data['car']
+            owner_add = Car.objects.create(name=name, last_name=last_name, car=car)
+
+            return render(request, "owner_add.html", {'owner_add': owner_add})
