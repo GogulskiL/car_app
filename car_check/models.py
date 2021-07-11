@@ -41,6 +41,9 @@ class Car(models.Model):
     vintage = models.IntegerField()
     course = models.IntegerField()
 
+    def __str__(self):
+        return self.mark + " " + self.car_model
+
 
 class Workshop(models.Model):
     """

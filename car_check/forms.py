@@ -2,6 +2,8 @@ from django import forms
 from car_check.models import car_fuel, rating, price_workshop, Car
 
 
+
+
 class CarAddForm(forms.Form):
     mark = forms.CharField(label="Marka auta", max_length=50)
     car_model = forms.CharField(label="Model auta")
@@ -23,4 +25,4 @@ class WorkshopAddForm(forms.Form):
 class OwnerAddForm(forms.Form):
     name = forms.CharField(label="Imię")
     last_name = forms.CharField(label="Nazwisko")
-    car = forms.ModelChoiceField(Car.objects.all())
+    car = forms.ModelChoiceField(queryset=Car.objects.all())
