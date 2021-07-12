@@ -27,7 +27,7 @@ class OwnerAddForm(forms.Form):
 
 
 class RepairAddForm(forms.Form):
-    type = forms.ChoiceField(label="rodzaj naprawy", choices=type_of_repair)
+    type_of = forms.ChoiceField(label="rodzaj naprawy", choices=type_of_repair)
     description = forms.CharField(label="opis naprawy", max_length=1000)
     date_repair = forms.DateField(widget=forms.HiddenInput)
     cost = forms.IntegerField(label="koszty")
