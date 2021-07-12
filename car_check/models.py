@@ -42,7 +42,7 @@ class Car(models.Model):
     course = models.IntegerField()
 
     def __str__(self):
-        return self.mark + " " + self.car_model
+        return f'{self.mark} {self.car_model} ID: {self.id}'
 
 
 class Workshop(models.Model):

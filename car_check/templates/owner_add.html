@@ -8,11 +8,12 @@
         <input type="submit" value="dodaj">
     </form>
     {% if owner_add %}
+
         <p>Dodano auto</p>
         <ul>
             <li>{{ owner_add.name }}</li>
             <li>{{ owner_add.last_name }}</li>
-            <li>{{ owner_add.car }}</li>
+            <li>{{ car.mark }} {{ car.car_model }}</li>
         </ul>
     {% endif %}
 

@@ -1,7 +1,5 @@
 from django import forms
-from car_check.models import car_fuel, rating, price_workshop, Car
-
-
+from car_check.models import car_fuel, rating, price_workshop, Car, type_of_repair, Workshop
 
 
 class CarAddForm(forms.Form):
@@ -26,3 +24,12 @@ class OwnerAddForm(forms.Form):
     name = forms.CharField(label="Imię")
     last_name = forms.CharField(label="Nazwisko")
     car = forms.ModelChoiceField(queryset=Car.objects.all())
+
+
+class RepairAddForm(forms.Form):
+    type = forms.ChoiceField(label="rodzaj naprawy", choices=type_of_repair)
+    description = forms.CharField(max_length=1000)
+    date_repair = forms.DateTimeField(auto_now_add=True)
+    cost = forms.IntegerField()
+    car = forms.ModelChoiceField(Car)
+    workshop = forms.ModelChoiceField(Workshop)

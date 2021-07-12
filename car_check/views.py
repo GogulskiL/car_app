@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
 from django.views import View
-from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm
+from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm
 from .models import Car, Workshop, Owner
 
 
@@ -55,13 +55,31 @@ class OwnerAddView(View):
         return render(request, "owner_add.html", {'form': form})
 
     def post(self, request):
-        form = OwnerAddForm()
+        form = OwnerAddForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             last_name = form.cleaned_data['last_name']
             car = form.cleaned_data['car']
-            owner_add = Car.objects.create(name=name, last_name=last_name, car=car.id)
 
-            return render(request, "owner_add.html", {'owner_add': owner_add})
-        else:
-            return HttpResponse('blad')
+            owner_add = Owner.objects.create(name=name, last_name=last_name)
+            owner_add.car.add(car)
+
+            return render(request, "owner_add.html", {'owner_add': owner_add, 'car': car})
+
+
+class RepairAddView(View):
+    def get(self, request):
+        form = RepairAddForm()
+
+        return render(request, "repair_add.html", {'form': form})
+
+    def post(self, request):
+        # form = RepairAddForm()
+        # if form.is_valid():
+        #     type = form.cleaned_data['type']
+        #     description = forms.CharField(max_length=1000)
+        #     date_repair = forms.DateTimeField(auto_now_add=True)
+        #     cost = forms.IntegerField()
+        #     car = forms.ModelChoiceField(Car)
+        #     workshop = forms.ModelChoiceField(Workshop)
+        pass
