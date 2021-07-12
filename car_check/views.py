@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
 from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm
-from .models import Car, Workshop, Owner
+from .models import Car, Workshop, Owner, Repair
 
 
 class HomeView(View):
@@ -74,12 +74,18 @@ class RepairAddView(View):
         return render(request, "repair_add.html", {'form': form})
 
     def post(self, request):
-        # form = RepairAddForm()
-        # if form.is_valid():
-        #     type = form.cleaned_data['type']
-        #     description = forms.CharField(max_length=1000)
-        #     date_repair = forms.DateTimeField(auto_now_add=True)
-        #     cost = forms.IntegerField()
-        #     car = forms.ModelChoiceField(Car)
-        #     workshop = forms.ModelChoiceField(Workshop)
-        pass
+        form = RepairAddForm()
+        if form.is_valid():
+            type = form.cleaned_data['type']
+            description = form.cleaned_data['description']
+            date_repair = form.cleaned_data['date_repair']
+            cost = form.cleaned_data['cost']
+            car = form.cleaned_data['car']
+            workshop = form.cleaned_data['workshop']
+
+            repair_add = Repair.objects.create(type=type, description=description, date_repair=date_repair, cost=cost,
+                                               car=car, workshop=workshop)
+            # repair_add.car.add(car)
+            # repair_add.workshop.add(workshop)
+
+            return render(request, "repair_add.html", {'repair_add': repair_add, 'car': car, 'workshop': workshop})

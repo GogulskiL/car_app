@@ -1,12 +1,12 @@
 {% extends "__base__.html" %}
 {% block content %}
 
-W tym widoku możesz dodać warsztat<br/>
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
- <input type="submit" value="dodaj">
-</form>
+    W tym widoku możesz dodać warsztat<br/>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="dodaj">
+    </form>
     {% if workshop_add %}
         <p>Dodano warsztat</p>
         <ul>

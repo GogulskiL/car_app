@@ -2,21 +2,21 @@
 {% block content %}
 
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
- <input type="submit" value="dodaj">
-</form>
-{#    {% if  %}#}
-{#        <p>Dodano auto</p>#}
-{#        <ul>#}
-{#            <li>{{  }}</li>#}
-{#            <li>{{  }}</li>#}
-{#            <li>{{  }}</li>#}
-{#            <li>{{  }}</li>#}
-{#            <li>{{  }}</li>#}
-{#            <li>{{  }}</li>#}
-{#        </ul>#}
-{#    {% endif %}#}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="dodaj">
+    </form>
+        {% if repair_add  %}
+            <p>Dodano auto</p>
+            <ul>
+                <li>{{ repair_add.type }}</li>
+                <li>{{ repair_add.description }}</li>
+                <li>{{ repair_add.date_repair }}</li>
+                <li>{{ repair_add.cost }}</li>
+                <li>{{ car.model }}</li>
+                <li>{{ workshop.name }}</li>
+            </ul>
+        {% endif %}
 
 {% endblock content %}
