@@ -28,8 +28,8 @@ class OwnerAddForm(forms.Form):
 
 class RepairAddForm(forms.Form):
     type = forms.ChoiceField(label="rodzaj naprawy", choices=type_of_repair)
-    description = forms.CharField(max_length=1000)
-    date_repair = forms.DateTimeField(auto_now_add=True)
-    cost = forms.IntegerField()
-    car = forms.ModelChoiceField(Car)
-    workshop = forms.ModelChoiceField(Workshop)
+    description = forms.CharField(label="opis naprawy", max_length=1000)
+    date_repair = forms.DateField(widget=forms.HiddenInput)
+    cost = forms.IntegerField(label="koszty")
+    car = forms.ModelChoiceField(label="auto", queryset=Car.objects.all())
+    workshop = forms.ModelChoiceField(label="warsztat", queryset=Workshop.objects.all())
