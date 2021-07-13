@@ -75,28 +75,14 @@ class RepairAddView(View):
     def post(self, request):
         form = RepairAddForm(request.POST)
         if form.is_valid():
-            type_of = form.cleaned_data['type']
+            type_repair = form.cleaned_data['type_repair']
             description = form.cleaned_data['description']
-            date_repair = form.cleaned_data['date_repair']
             cost = form.cleaned_data['cost']
             car = form.cleaned_data['car']
             workshop = form.cleaned_data['workshop']
 
-            repair_add = Repair.objects.create(type=type_of, description=description, date_repair=date_repair,
-                                               cost=cost)
-            repair_add.workshop.add(workshop)
-            repair_add.car.add(car)
+            repair_add = Repair.objects.create(type=type_repair, description=description, cost=cost,
+                                               car=car,
+                                               workshop=workshop)
 
-            ctx = {
-                # 'repair_add': repair_add,
-                'car': car,
-                'workshop': workshop,
-                'type': type_of,
-                'description': description,
-                'date_repair': date_repair,
-                'cost': cost,
-            }
-
-            return render(request, "repair_add.html", ctx)
-        else:
-            return HttpResponse('blad')
+            return render(request, "repair_add.html", {'repair_add': repair_add})

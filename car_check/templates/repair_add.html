@@ -7,21 +7,18 @@
         {{ form.as_p }}
         <input type="submit" value="dodaj">
     </form>
-{#    {% if repair_add %}#}
-{#        <p>Dodano naprawe</p>#}
-{#        <ul>#}
-{#            <li>{{ repair_add.type }}</li>#}
-{#            <li>{{ repair_add.description }}</li>#}
+    {% if repair_add %}
+        <p>Dodano naprawe</p>
+        <ul>
+            <li>{{ repair_add.type }}</li>
+            <li>{{ repair_add.description }}</li>
 {#            <li>{{ repair_add.date_repair }}</li>#}
 {#            <li>{{ repair_add.cost }}</li>#}
 {#            <li>{{ car.model }}</li>#}
 {#            <li>{{ workshop.name }}</li>#}
-{#        </ul>#}
-{#    {% endif %}#}
-    {{ repair_add.type }}
-{#    {{ repair_add.description }}#}
-{#    {{ repair_add.date_repair }}#}
-{#    {{ repair_add.cost }}#}
+        </ul>
+    {% endif %}
+
 
 
 {% endblock content %}
