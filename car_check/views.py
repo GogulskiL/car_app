@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm
+from django.http import HttpResponse
+from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm, CarRemoveForm
 from .models import Car, Workshop, Owner, Repair
 
 
@@ -35,10 +36,16 @@ class CarAddView(View):
 
 class CarRemoveView(View):
     def get(self, request):
-        pass
+        form = CarRemoveForm()
+        return render(request, 'car_remove.html', {'form': form})
 
-    def post(self,request):
-        pass
+    def post(self, request):
+        form = CarRemoveForm(request.POST)
+        if form.is_valid():
+            car = form.cleaned_data['car']
+            remove_car = Car.objects.get(id=car.id)
+            remove_car.delete()
+            return HttpResponse("usunięte")
 
 
 class WorkshopAddView(View):

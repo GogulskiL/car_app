@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "__base__.html" %}
+{% block content %}
 
-</body>
-</html>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="dodaj">
+    </form>
+    {#    {% if car_add %}#}
+    {#        <p></p>#}
+    {#        <ul>#}
+    {#            <li>{{ .mark }}</li>#}
+    {#            <li>{{ .car_model }}</li>#}
+    {#            <li>{{ .engine }}</li>#}
+    {#            <li>{{ .fuel }}</li>#}
+    {#            <li>{{ .vintage }}</li>#}
+    {#            <li>{{ .course }}</li>#}
+    {#        </ul>#}
+    {#    {% endif %}#}
+
+{% endblock content %}

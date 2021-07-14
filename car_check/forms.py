@@ -11,6 +11,10 @@ class CarAddForm(forms.Form):
     course = forms.IntegerField(label="Przebieg")
 
 
+class CarRemoveForm(forms.Form):
+    car = forms.ModelChoiceField(label="Wybierz auto", queryset=Car.objects.all(), limit_choices_to=1)
+
+
 class WorkshopAddForm(forms.Form):
     name = forms.CharField(label="Nazwa warsztatu")
     phone_number = forms.IntegerField(label="Numer telefonu")
