@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.views import View
 from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm
 from .models import Car, Workshop, Owner, Repair

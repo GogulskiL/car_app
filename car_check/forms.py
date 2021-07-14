@@ -1,6 +1,5 @@
 from django import forms
 from car_check.models import car_fuel, rating, price_workshop, Car, type_of_repair, Workshop
-from django.forms import ModelForm
 
 
 class CarAddForm(forms.Form):
@@ -24,13 +23,12 @@ class WorkshopAddForm(forms.Form):
 class OwnerAddForm(forms.Form):
     name = forms.CharField(label="Imię")
     last_name = forms.CharField(label="Nazwisko")
-    car = forms.ModelChoiceField(queryset=Car.objects.all())
+    car = forms.ModelChoiceField(label="Samochód", queryset=Car.objects.all())
 
 
 class RepairAddForm(forms.Form):
     type_repair = forms.ChoiceField(label="rodzaj naprawy", choices=type_of_repair)
     description = forms.CharField(label="opis naprawy", max_length=1000)
-    # date_repair = forms.DateField(widget=forms.HiddenInput)
     cost = forms.IntegerField(label="koszty")
     car = forms.ModelChoiceField(label="auto", queryset=Car.objects.all())
     workshop = forms.ModelChoiceField(label="warsztat", queryset=Workshop.objects.all())
