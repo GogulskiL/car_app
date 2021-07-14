@@ -4,6 +4,11 @@ from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm
 from .models import Car, Workshop, Owner, Repair
 
 
+class TestView(View):
+    def get(self, request):
+        return render(request, "test.html")
+
+
 class HomeView(View):
     def get(self, request):
         return render(request, "index.html")
@@ -26,6 +31,14 @@ class CarAddView(View):
             car_add = Car.objects.create(mark=car, car_model=model, engine=engine, fuel=fuel, vintage=vintage,
                                          course=course)
             return render(request, 'car_add.html', {'car_add': car_add})
+
+
+class CarRemoveView(View):
+    def get(self, request):
+        pass
+
+    def post(self,request):
+        pass
 
 
 class WorkshopAddView(View):
