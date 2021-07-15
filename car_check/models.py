@@ -66,6 +66,9 @@ class Owner(models.Model):
     last_name = models.CharField(max_length=64)
     car = models.ManyToManyField(Car)
 
+    def __str__(self):
+        return f'{self.name} {self.last_name}'
+
 
 class Repair(models.Model):
     """
@@ -77,6 +80,9 @@ class Repair(models.Model):
     cost = models.IntegerField()
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.type} {self.description} {self.car} {self.date_repair}'
 
 
 class Remainder(models.Model):

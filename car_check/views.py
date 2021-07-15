@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
-from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm, CarRemoveForm
+from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm, CarRemoveForm, WorkshopRemoveForm, \
+    OwnerRemoveForm, RepairRemoveForm
 from .models import Car, Workshop, Owner, Repair
 
 
@@ -40,7 +41,7 @@ class CarRemoveView(View):
             car = form.cleaned_data['car']
             remove_car = Car.objects.get(id=car.id)
             remove_car.delete()
-            return HttpResponse("Usunięte")
+            return HttpResponse("<p> Usunięte <p>")
 
 
 class WorkshopAddView(View):
@@ -65,10 +66,16 @@ class WorkshopAddView(View):
 
 class WorkshopRemoveView(View):
     def get(self, reguest):
-        pass
+        form = WorkshopRemoveForm()
+        return render(reguest, "workshop_remove.html", {'form': form})
 
     def post(self, request):
-        pass
+        form = WorkshopRemoveForm(request.POST)
+        if form.is_valid():
+            workshop = form.cleaned_data['workshop']
+            workshop_remove = Workshop.objects.get(id=workshop.id)
+            workshop_remove.delete()
+            return HttpResponse("<p>Usunięto</p>")
 
 
 class OwnerAddView(View):
@@ -87,6 +94,20 @@ class OwnerAddView(View):
             owner_add.car.add(car)
 
             return render(request, "owner_add.html", {'owner_add': owner_add, 'car': car})
+
+
+class OwnerRemoveView(View):
+    def get(self, request):
+        form = OwnerRemoveForm()
+        return render(request, "owner_remove.html", {'form': form})
+
+    def post(self, request):
+        form = OwnerRemoveForm(request.POST)
+        if form.is_valid():
+            owner = form.cleaned_data['owner']
+            owner_remove = Owner.objects.get(id=owner.id)
+            owner_remove.delete()
+            return HttpResponse("<p>Usunięte<p>")
 
 
 class RepairAddView(View):
@@ -108,3 +129,17 @@ class RepairAddView(View):
                                                workshop=workshop)
 
             return render(request, "repair_add.html", {'repair_add': repair_add})
+
+
+class RepairRemoveView(View):
+    def get(self, request):
+        form = RepairRemoveForm()
+        return render(request, "repair_remove.html", {'form': form})
+
+    def post(self, request):
+        form = RepairRemoveForm(request.POST)
+        if form.is_valid():
+            repair = form.cleaned_data['repair']
+            repair_remove = Repair.objects.get(id=repair.id)
+            repair_remove.delete()
+            return HttpResponse("<p>Usunięto<p>")

@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from car_check.views import HomeView, CarAddView, WorkshopAddView, OwnerAddView, RepairAddView, CarRemoveView
+from car_check.views import HomeView, CarAddView, WorkshopAddView, OwnerAddView, RepairAddView, CarRemoveView, \
+    WorkshopRemoveView, OwnerRemoveView, RepairRemoveView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('add_car/', CarAddView.as_view(), name='add-car'),
     path('car_remove/', CarRemoveView.as_view(), name='car-remove'),
     path('workshop_add/', WorkshopAddView.as_view(), name='workshop-add'),
+    path('workshop_remove/', WorkshopRemoveView.as_view(), name='workshop-remove'),
     path('owner_add/', OwnerAddView.as_view(), name='owner-add'),
+    path('owner_remove', OwnerRemoveView.as_view(), name='owner-remove'),
     path('repair_add/', RepairAddView.as_view(), name='repair-add'),
+    path('repair_remove/', RepairRemoveView.as_view(), name='repair-remove'),
 ]
