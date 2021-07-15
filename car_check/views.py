@@ -5,11 +5,6 @@ from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm, Car
 from .models import Car, Workshop, Owner, Repair
 
 
-class TestView(View):
-    def get(self, request):
-        return render(request, "test.html")
-
-
 class HomeView(View):
     def get(self, request):
         return render(request, "index.html")
@@ -45,7 +40,7 @@ class CarRemoveView(View):
             car = form.cleaned_data['car']
             remove_car = Car.objects.get(id=car.id)
             remove_car.delete()
-            return HttpResponse("usunięte")
+            return HttpResponse("Usunięte")
 
 
 class WorkshopAddView(View):
@@ -66,6 +61,14 @@ class WorkshopAddView(View):
                                                    prices=prices, short_description=short_description)
 
             return render(request, "workshop_add.html", {'workshop_add': workshop_add})
+
+
+class WorkshopRemoveView(View):
+    def get(self, reguest):
+        pass
+
+    def post(self, request):
+        pass
 
 
 class OwnerAddView(View):

@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from car_check.views import HomeView, CarAddView, WorkshopAddView, OwnerAddView, RepairAddView, TestView, CarRemoveView
+from car_check.views import HomeView, CarAddView, WorkshopAddView, OwnerAddView, RepairAddView, CarRemoveView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('test/', TestView.as_view(), name='test'),
     path('add_car/', CarAddView.as_view(), name='add-car'),
     path('car_remove/', CarRemoveView.as_view(), name='car-remove'),
     path('workshop_add/', WorkshopAddView.as_view(), name='workshop-add'),
