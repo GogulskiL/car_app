@@ -3,7 +3,7 @@ from car_check.models import car_fuel, rating, price_workshop, Car, type_of_repa
 
 
 class CarAddForm(forms.Form):
-    mark = forms.CharField(label="Marka auta", max_length=50)
+    mark = forms.CharField(label="Marka auta", max_length=50, widget=forms.TextInput(attrs={'size': '40'}))
     car_model = forms.CharField(label="Model auta")
     engine = forms.IntegerField(label="Pojemność silnika")
     fuel = forms.ChoiceField(label="Rodzaj Paliwa", choices=car_fuel)
