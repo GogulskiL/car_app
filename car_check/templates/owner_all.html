@@ -18,6 +18,8 @@
             <td>{{ owners.name }}</td>
             <td>{{ owners.last_name }}</td>
             <td>{{ owners.car.get }} </td>
+        {% empty %}
+            <td>Brak danych do wyświetlenia</td>
         {% endfor %}
         </tr>
         </tbody>

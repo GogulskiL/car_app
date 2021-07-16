@@ -24,6 +24,8 @@
             <td>{{ workshops.note }}</td>
             <td>{{ workshops.prices }}</td>
             <td>{{ workshops.short_description }}</td>
+        {% empty %}
+            <td>Brak danych do wyświetlenia</td>
         {% endfor %}
         </tr>
         </tbody>

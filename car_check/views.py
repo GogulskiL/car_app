@@ -165,3 +165,9 @@ class RepairRemoveView(View):
             repair_remove = Repair.objects.get(id=repair.id)
             repair_remove.delete()
             return HttpResponse("<p>Usunięto<p>")
+
+
+class RepairAllView(View):
+    def get(self, request):
+        repair = Repair.objects.all()
+        return render(request, "repair_all.html", {'repair': repair})

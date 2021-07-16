@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from car_check.views import HomeView, CarAddView, WorkshopAddView, OwnerAddView, RepairAddView, CarRemoveView, \
-    WorkshopRemoveView, OwnerRemoveView, RepairRemoveView, CarAllView, WorkshopAllView, OwnerAllView
+    WorkshopRemoveView, OwnerRemoveView, RepairRemoveView, CarAllView, WorkshopAllView, OwnerAllView, RepairAllView
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('owner_all', OwnerAllView.as_view(), name='owner-all'),
     path('repair_add/', RepairAddView.as_view(), name='repair-add'),
     path('repair_remove/', RepairRemoveView.as_view(), name='repair-remove'),
+    path('repair_all', RepairAllView.as_view(), name='repair-all')
 ]

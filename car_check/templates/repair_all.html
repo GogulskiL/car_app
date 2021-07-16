@@ -1,0 +1,35 @@
+{% extends "__base__.html" %}
+{% block content %}
+
+
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Typ naprawy</th>
+            <th scope="col">Opis naprawy</th>
+            <th scope="col">Data naprawy</th>
+            <th scope="col">Koszty</th>
+            <th scope="col">Marka/Model/ID</th>
+            <th scope="col">Warsztat naprawy</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for repairs in repair %}
+            <tr>
+            <th scope="row">{{ repairs.id }}</th>
+            <td>{{ repairs.type }}</td>
+            <td>{{ repairs.description }}</td>
+            <td>{{ repairs.cost }} </td>
+            <td>{{ repairs.cost }} </td>
+            <td>{{ repairs.car }} </td>
+            <td>{{ repairs.workshop }} </td>
+        {% empty %}
+            <td>Brak danych do wyświetlenia</td>
+        {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock content %}

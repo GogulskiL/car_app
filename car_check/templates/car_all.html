@@ -24,6 +24,8 @@
             <td>{{ cars.fuel }}</td>
             <td>{{ cars.vintage }}</td>
             <td>{{ cars.course }}</td>
+        {% empty %}
+            <td>Brak danych do wyświetlenia</td>
         {% endfor %}
         </tr>
         </tbody>
