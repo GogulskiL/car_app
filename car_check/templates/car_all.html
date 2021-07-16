@@ -1,0 +1,33 @@
+{% extends "__base__.html" %}
+{% block content %}
+
+
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+            <th scope="col">Silnik</th>
+            <th scope="col">Rodzaj paliwa</th>
+            <th scope="col">Rocznik</th>
+            <th scope="col">Przebieg</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cars in car %}
+            <tr>
+            <th scope="row">{{ cars.id }}</th>
+            <td>{{ cars.mark }}</td>
+            <td>{{ cars.car_model }}</td>
+            <td>{{ cars.engine }}</td>
+            <td>{{ cars.fuel }}</td>
+            <td>{{ cars.vintage }}</td>
+            <td>{{ cars.course }}</td>
+        {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock content %}

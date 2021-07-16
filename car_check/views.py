@@ -44,6 +44,12 @@ class CarRemoveView(View):
             return HttpResponse("<p> Usunięte <p>")
 
 
+class CarAllView(View):
+    def get(self, request):
+        car = Car.objects.all()
+        return render(request, "car_all.html", {'car': car})
+
+
 class WorkshopAddView(View):
     def get(self, request):
         form = WorkshopAddForm()
