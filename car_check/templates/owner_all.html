@@ -8,7 +8,7 @@
             <th scope="col">ID</th>
             <th scope="col">Imie</th>
             <th scope="col">Nazwisko</th>
-            <th scope="col">Auto</th>
+            <th scope="col">Marka/Model/ID</th>
         </tr>
         </thead>
         <tbody>
@@ -17,7 +17,7 @@
             <th scope="row">{{ owners.id }}</th>
             <td>{{ owners.name }}</td>
             <td>{{ owners.last_name }}</td>
-            <td>{{  owners.car }}</td>
+            <td>{{ owners.car.get }} </td>
         {% endfor %}
         </tr>
         </tbody>
