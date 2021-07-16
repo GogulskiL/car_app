@@ -55,6 +55,3 @@ class RepairAddForm(forms.Form):
 
 class RepairRemoveForm(forms.Form):
     repair = forms.ModelChoiceField(label="Wybierz naprawę ", queryset=Repair.objects.all())
-
-
-

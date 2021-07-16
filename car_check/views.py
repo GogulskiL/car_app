@@ -143,6 +143,3 @@ class RepairRemoveView(View):
             repair_remove = Repair.objects.get(id=repair.id)
             repair_remove.delete()
             return HttpResponse("<p>Usunięto<p>")
-
-
-

@@ -5,7 +5,7 @@
     <form action="" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="dodaj">
+        <input class="button btn-lg" type="submit" value="dodaj">
     </form>
     {% if car_add %}
         <p>Dodano auto</p>
@@ -18,5 +18,6 @@
             <li>{{ car_add.course }}</li>
         </ul>
     {% endif %}
+
 
 {% endblock content %}
