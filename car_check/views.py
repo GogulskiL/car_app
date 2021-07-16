@@ -84,6 +84,12 @@ class WorkshopRemoveView(View):
             return HttpResponse("<p>Usunięto</p>")
 
 
+class WorkshopAllView(View):
+    def get(self, request):
+        workshop = Workshop.objects.all()
+        return render(request, 'workshop_all.html', {'workshop': workshop})
+
+
 class OwnerAddView(View):
     def get(self, request):
         form = OwnerAddForm()
@@ -116,6 +122,12 @@ class OwnerRemoveView(View):
             return HttpResponse("<p>Usunięte<p>")
 
 
+class OwnerAllView(View):
+    def get(self, request):
+        owner = Owner.objects.all()
+        return render(request, "owner_all.html", {'owner': owner})
+
+
 class RepairAddView(View):
     def get(self, request):
         form = RepairAddForm()
@@ -133,8 +145,12 @@ class RepairAddView(View):
             repair_add = Repair.objects.create(type=type_repair, description=description, cost=cost,
                                                car=car,
                                                workshop=workshop)
-
-            return render(request, "repair_add.html", {'repair_add': repair_add})
+            ctx = {
+                'repair_add': repair_add,
+                'car': car,
+                'workshop': workshop
+            }
+            return render(request, "repair_add.html", ctx)
 
 
 class RepairRemoveView(View):
