@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import CarAddForm, WorkshopAddForm, OwnerAddForm, RepairAddForm, CarRemoveForm, WorkshopRemoveForm, \
     OwnerRemoveForm, RepairRemoveForm
 from .models import Car, Workshop, Owner, Repair
@@ -8,7 +9,17 @@ from .models import Car, Workshop, Owner, Repair
 
 class HomeView(View):
     def get(self, request):
-        return render(request, "index.html")
+        car_last = Car.objects.all().reverse()[0]
+        workshop_last = Workshop.objects.all().reverse()[0]
+        owner_last = Owner.objects.all().reverse()[0]
+        repair_last = Repair.objects.all().reverse()[0]
+        ctx = {
+            'car_last': car_last,
+            'workshop_last': workshop_last,
+            'owner_last': owner_last,
+            'repair_last': repair_last
+        }
+        return render(request, "index.html", ctx)
 
 
 class CarAddView(View):
@@ -47,6 +58,15 @@ class CarRemoveView(View):
 class CarAllView(View):
     def get(self, request):
         car = Car.objects.all()
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(car, 5)
+        try:
+            car = paginator.page(page)
+        except PageNotAnInteger:
+            car = paginator.page(1)
+        except EmptyPage:
+            car = paginator.page(paginator.num_pages)
         return render(request, "car_all.html", {'car': car})
 
 

@@ -31,5 +31,28 @@
         </tbody>
     </table>
 
+    {% if car.has_other_pages %}
+        <ul class="pagination">
+            {% if car.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ car.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+            {% endif %}
+            {% for i in car.paginator.page_range %}
+                {% if users.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if car.has_next %}
+                <li><a href="?page={{ car.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+
+
 
 {% endblock content %}
