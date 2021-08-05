@@ -200,3 +200,11 @@ class RepairAllView(View):
     def get(self, request):
         repair = Repair.objects.all()
         return render(request, "repair_all.html", {'repair': repair})
+
+
+class OllView(View):
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass
