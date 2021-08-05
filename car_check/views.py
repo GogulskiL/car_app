@@ -8,6 +8,9 @@ from .models import Car, Workshop, Owner, Repair
 
 
 class HomeView(View):
+    """
+    Return home views. 
+    """
     def get(self, request):
         car_last = Car.objects.all().reverse()[0]
         workshop_last = Workshop.objects.all().reverse()[0]
@@ -24,10 +27,16 @@ class HomeView(View):
 
 class CarAddView(View):
     def get(self, request):
+        """
+        Return form add car.
+        """
         form = CarAddForm()
         return render(request, "car_add.html", {'form': form})
 
     def post(self, request):
+        """
+        Return cleaned data from forms add car
+        """
         form = CarAddForm(request.POST)
         if form.is_valid():
             car = form.cleaned_data['mark']
