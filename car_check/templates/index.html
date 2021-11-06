@@ -1,5 +1,6 @@
 {% extends "__base__.html" %}
 {% block content %}
+{% load static %}
     <div class="container-fluid">
         <h1 class="strong">Aplikacja do zarządziania kosztami napraw samochodów</h1>
     </div>
@@ -50,7 +51,7 @@
 
         <div class="container-fluid  p-3 my-3 bg-dark text-white">
             <h4>Panel napraw</h4><br/>
-{#            <h5> Ostatnio dadana naprawa: {{ repair_last }}</h5><br/>#}
+{#          <h5> Ostatnio dadana naprawa: {{ repair_last }}</h5><br/>#}
             <button type="button" class="btn btn-success btn-lg"><a href="/repair_add" class="text-white">Dodaj
                 naprawę</a>
             </button>
@@ -64,6 +65,8 @@
 
     </div>
 
-
+<script src="{% static 'index.js'%}">
+</script>
 
 {% endblock content %}
+
